@@ -1,9 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/Controller/Home%20Bloc/home_bloc_state.dart';
 import 'package:portfolio/View/Home/Header/header_items.dart';
 
-Widget homeHeader(BuildContext context) {
+Widget homeHeader(BuildContext context, HomeBlocState state) {
   return SizedBox(
     height: 57,
     width: MediaQuery.of(context).size.width,
@@ -21,7 +22,7 @@ Widget homeHeader(BuildContext context) {
             borderRadius: BorderRadius.circular(50),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 35, sigmaY: 35), // Adjust sigmaX and sigmaY for desired blur intensity
-              child: const HeaderItems(),
+              child: HeaderItems(state: state,),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:portfolio/Services/link_opener.dart';
 import '../../../../Services/screen_size.dart';
 import '../Projects Design/projects_text_widget.dart';
 
@@ -42,7 +43,7 @@ Widget contactsHomeWidget(BuildContext context) {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            contactElement(Bootstrap.telegram, 'Telegram', '8801521762061'),
+            contactElement(Bootstrap.telegram, 'Telegram', '+8801521762061'),
             contactElement(Icons.phone, 'Phone/Whatsapp', '+8801521762061'),
           ],
         ),
@@ -51,40 +52,46 @@ Widget contactsHomeWidget(BuildContext context) {
   );
 }
 
-Widget contactElement(IconData iconData, String title, String text) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Icon(
-        iconData,
-        color: Colors.blue,
-        size: 33,
-      ),
-      const SizedBox(width: 20,),
-      SizedBox(
-        width: 250,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w900
-              ),
-              overflow: TextOverflow.clip,
-            ),
-
-            SelectableText(
-              text,
-              style: TextStyle(
-                  color: Colors.grey.shade600,
+Widget contactElement(IconData iconData, String title, String link) {
+  return GestureDetector(
+    onTap: () {
+      openNewWindow(link);
+    },
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(
+          iconData,
+          color: Colors.blue,
+          size: 33,
+        ),
+        const SizedBox(width: 20,),
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w900
+                ),
                 overflow: TextOverflow.clip,
               ),
-            ),
-          ],
+
+              SelectableText(
+                link,
+                style: TextStyle(
+                    color: Colors.grey.shade600,
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+            ],
+          ),
         ),
-      )
-    ],
+        const SizedBox(width: 20,),
+      ],
+    ),
   );
 }

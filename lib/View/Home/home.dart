@@ -1,8 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:portfolio/View/Home/Designs/all_frontend_designs.dart';
 import 'package:rive/rive.dart';
-import 'Designs/all_frontend_designs.dart';
-
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -27,7 +26,7 @@ class Home extends StatelessWidget {
           ),
 
 
-          allFrontEndDesigns(context)
+          const AllFrontendDesigns(),
         ],
       ),
     );

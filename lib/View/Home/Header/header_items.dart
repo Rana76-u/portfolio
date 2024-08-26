@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Controller/Home%20Bloc/home_bloc_events.dart';
 import 'package:portfolio/Services/screen_size.dart';
 
-class HeaderItems extends StatefulWidget {
-  const HeaderItems({super.key});
+import '../../../Controller/Home Bloc/home_bloc.dart';
+import '../../../Controller/Home Bloc/home_bloc_state.dart';
 
-  @override
-  State<HeaderItems> createState() => _HeaderItemsState();
-}
+class HeaderItems extends StatelessWidget {
+  final HomeBlocState state;
+  const HeaderItems({super.key, required this.state});
 
-class _HeaderItemsState extends State<HeaderItems> {
-  int selectedIndex = 0;
-
-  void animateContainer(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+  void animateContainer(BuildContext context, int index) {
+    BlocProvider.of<HomeBloc>(context).add(GotoContactsEvent());
   }
 
   @override
@@ -28,7 +25,7 @@ class _HeaderItemsState extends State<HeaderItems> {
       itemCount: 4,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () => animateContainer(index),
+          onTap: () => animateContainer(context, index),
           child: Padding(
             padding: EdgeInsets.only(
               top: 16,
@@ -50,7 +47,7 @@ class _HeaderItemsState extends State<HeaderItems> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   height: 3,
-                  width: selectedIndex == index ? 20 : 0,
+                  width: state.selectedIndex == index ? 20 : 0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.blue,
@@ -65,3 +62,4 @@ class _HeaderItemsState extends State<HeaderItems> {
     );
   }
 }
+
